@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { decrement, increment, reset } from '../../shared/store/counter.actions';
+import { changeText, decrement, increment, reset } from '../../shared/store/counter.actions';
+
 
 @Component({
   selector: 'app-counterbutton',
@@ -21,5 +22,9 @@ export class CounterbuttonComponent {
 
   OnReset() {
     this.store.dispatch(reset());
+  }
+
+  OnRename(){
+    this.store.dispatch(changeText({message:'This is renamed text'}));
   }
 }

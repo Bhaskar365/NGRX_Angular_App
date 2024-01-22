@@ -5,3 +5,4 @@ export const decrement = createAction("decrement");
 export const reset = createAction("reset");
 
 export const customincrement = createAction("customincrement", props<{ value: number , action: string }>())
+export const changeText = createAction("message", props<{ message:string }>());
