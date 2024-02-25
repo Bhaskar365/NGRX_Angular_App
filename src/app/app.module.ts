@@ -27,7 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({counter:counterReducer}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

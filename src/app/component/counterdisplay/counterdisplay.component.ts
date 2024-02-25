@@ -9,7 +9,7 @@ import { getCounter } from '../../shared/store/counter.selector';
   templateUrl: './counterdisplay.component.html',
   styleUrl: './counterdisplay.component.css'
 })
-export class CounterdisplayComponent implements OnInit , OnDestroy{
+export class CounterdisplayComponent implements OnInit,OnDestroy {
 
   constructor(private store:Store<{counter:CounterModel}>) { }
 
@@ -21,7 +21,7 @@ export class CounterdisplayComponent implements OnInit , OnDestroy{
   ngOnInit(): void {
     this.counterSubscription = this.store.select(getCounter).subscribe(data=>{
       this.counterDisplay = data;
-      // this.message = data.message;
+      // this.message = data;
       console.log('counter display');
     });
 

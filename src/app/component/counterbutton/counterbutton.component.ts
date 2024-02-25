@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { changeText, decrement, increment, reset } from '../../shared/store/counter.actions';
+import { CounterModel } from '../../shared/store/counter.model';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { changeText, decrement, increment, reset } from '../../shared/store/coun
 })
 export class CounterbuttonComponent {
 
-  constructor(private store:Store<{counter:{counter:number}}>){}
+  constructor(private store:Store<{counter:CounterModel}>){}
 
   OnIncrement() {
     this.store.dispatch(increment());
