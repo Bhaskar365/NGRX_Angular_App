@@ -28,7 +28,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MaterialModule,
     FormsModule,
     StoreModule.forRoot({counter:counterReducer}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
