@@ -12,6 +12,7 @@ import { CustomcounterComponent } from './component/customcounter/customcounter.
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { blogReducer } from './shared/store/Blog/Blog.reducers';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({counter:counterReducer}),
+    StoreModule.forRoot({counter:counterReducer , blog: blogReducer}),
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
