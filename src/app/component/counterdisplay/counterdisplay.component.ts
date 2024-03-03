@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { CounterModel } from '../../shared/store/counter.model';
 import { Subscription , Observable } from 'rxjs';
 import { getCounter } from '../../shared/store/counter.selector';
+import { AppstateModel } from '../../shared/Global/appstate.model';
 
 @Component({
   selector: 'app-counterdisplay',
@@ -11,7 +12,7 @@ import { getCounter } from '../../shared/store/counter.selector';
 })
 export class CounterdisplayComponent implements OnInit,OnDestroy {
 
-  constructor(private store:Store<{counter:CounterModel}>) { }
+  constructor(private store:Store<AppstateModel>) { }
 
   counterDisplay!:number;
   message:string = "";

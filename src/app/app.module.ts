@@ -16,6 +16,7 @@ import { blogReducer } from './shared/store/Blog/Blog.reducers';
 import { MatCardModule } from '@angular/material/card';
 import { BlogComponentComponent } from './blog-component/blog-component.component';
 import { AppState } from './shared/Global/app.state';
+import { AddblogComponent } from './component/addblog/addblog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppState } from './shared/Global/app.state';
     CounterbuttonComponent,
     CounterdisplayComponent,
     CustomcounterComponent,
-    BlogComponentComponent
+    BlogComponentComponent,
+    AddblogComponent
   ],
   imports: [
     BrowserModule,
