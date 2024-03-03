@@ -13,23 +13,27 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { blogReducer } from './shared/store/Blog/Blog.reducers';
+import { MatCardModule } from '@angular/material/card';
+import { BlogComponentComponent } from './blog-component/blog-component.component';
+import { AppState } from './shared/Global/app.state';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterbuttonComponent,
     CounterdisplayComponent,
-    CustomcounterComponent
+    CustomcounterComponent,
+    BlogComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({counter:counterReducer , blog: blogReducer}),
+    StoreModule.forRoot(AppState),
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    StoreModule.forRoot({counter:counterReducer}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() }),
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
