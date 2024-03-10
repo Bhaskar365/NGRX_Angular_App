@@ -10,7 +10,7 @@ import { counterReducer } from './shared/store/counter.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomcounterComponent } from './component/customcounter/customcounter.component';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { blogReducer } from './shared/store/Blog/Blog.reducers';
 import { MatCardModule } from '@angular/material/card';
@@ -35,7 +35,8 @@ import { AddblogComponent } from './component/addblog/addblog.component';
     MaterialModule,
     FormsModule,
     StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() }),
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

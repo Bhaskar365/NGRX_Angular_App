@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 @NgModule({
     exports:[
         MatButtonModule,
@@ -18,7 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatIconModule,
         MatToolbarModule,
         MatInputModule,
-        MatDialogModule
+        MatDialogModule,
     ]
 })
 

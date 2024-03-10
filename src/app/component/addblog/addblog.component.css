@@ -1,0 +1,9 @@
+mat-form-field {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+mat-form-field>input {
+    width: 100%;
+}
