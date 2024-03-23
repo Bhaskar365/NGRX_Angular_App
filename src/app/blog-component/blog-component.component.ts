@@ -26,12 +26,21 @@ export class BlogComponentComponent implements OnInit {
   }
 
   AddBlog() {
-    this.OpenPopup();
+    this.OpenPopup(0,'Add blog');
   }
 
-  OpenPopup() {
+  OpenPopup(id:any, title:any, isEdit=false) {
     this.dialog.open(AddblogComponent,{
-      width:'40%'
+      width:'40%',
+      data : {
+        id:id,
+        title:title,
+        isEdit:isEdit
+      }
     });
+  }
+
+  EditBlog(id:any) {
+    this.OpenPopup(id, 'Edit Blog', true);
   }
 }
