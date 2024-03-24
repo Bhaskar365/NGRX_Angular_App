@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { addblog, loadblog, updateblog } from "./Blog.actions";
+import { addblog, deleteblog, loadblog, updateblog } from "./Blog.actions";
 import { BlogState } from "./Blog.state";
+import { BlogModel } from './Blog.model';
 
 const _blogReducer = createReducer(BlogState, 
     on(loadblog, (state) => {
@@ -24,6 +25,15 @@ const _blogReducer = createReducer(BlogState,
         return {
             ...state,
             bloglist : updatedblog
+        }
+    }),
+    on(deleteblog,(state,action)=>{
+        const updatedblogToDelete = state.bloglist.filter((data:BlogModel)=>{
+            return data.id !== action.id
+        });
+        return {
+            ...state,
+            bloglist: updatedblogToDelete   
         }
     })
 )

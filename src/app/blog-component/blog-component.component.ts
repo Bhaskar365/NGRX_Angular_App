@@ -5,6 +5,7 @@ import { getblog } from '../shared/store/Blog/Blog.selectors';
 import { AppstateModel } from '../shared/Global/appstate.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddblogComponent } from '../component/addblog/addblog.component';
+import { deleteblog } from '../shared/store/Blog/Blog.actions';
 
 @Component({
   selector: 'app-blog-component',
@@ -42,5 +43,11 @@ export class BlogComponentComponent implements OnInit {
 
   EditBlog(id:any) {
     this.OpenPopup(id, 'Edit Blog', true);
+  }
+
+  RemoveBlog(id:any) {
+    if(confirm('Are you sure to remove this blog?')) {
+      this.store.dispatch(deleteblog({id:id}));
+    }
   }
 }

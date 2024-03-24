@@ -4,7 +4,10 @@ div{
 
 .mat-mdc-card {
     width:50%;
-    box-shadow: 1px 1px 1px 1px rgb(156, 151, 151);
     margin-left:25%;
     margin-top:2%;
+}
+
+button{
+    margin-left: 4px;
 }
