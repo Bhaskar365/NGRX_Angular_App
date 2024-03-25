@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addblog, deleteblog, loadblog, loadblogsuccess, updateblog } from "./Blog.actions";
+import { addblog, deleteblog, loadblog, loadblogfail, loadblogsuccess, updateblog } from "./Blog.actions";
 import { BlogState } from "./Blog.state";
 import { BlogModel } from './Blog.model';
 
@@ -12,7 +12,15 @@ const _blogReducer = createReducer(BlogState,
     on(loadblogsuccess, (state,action)=>{
         return {
             ...state,
-            bloglist:[...action.bloglist]
+            bloglist:[...action.bloglist],
+            ErrorMessage: ''
+        }
+    }),
+    on(loadblogfail,(state,action)=>{
+        return {
+            ...state,
+            bloglist:[],
+            ErrorMessage:action.Errortext
         }
     }),
     on(addblog, (state,action)=>{
