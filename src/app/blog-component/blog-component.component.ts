@@ -5,7 +5,7 @@ import { getblog } from '../shared/store/Blog/Blog.selectors';
 import { AppstateModel } from '../shared/Global/appstate.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddblogComponent } from '../component/addblog/addblog.component';
-import { deleteblog } from '../shared/store/Blog/Blog.actions';
+import { deleteblog, loadblog } from '../shared/store/Blog/Blog.actions';
 
 @Component({
   selector: 'app-blog-component',
@@ -20,6 +20,7 @@ export class BlogComponentComponent implements OnInit {
   constructor(private store:Store<AppstateModel>, private dialog:MatDialog) {}
 
   ngOnInit(): void {
+    this.store.dispatch(loadblog())
     this.store.select(getblog).subscribe(item => {
       this.blogList = item;
       console.log(this.blogList);
