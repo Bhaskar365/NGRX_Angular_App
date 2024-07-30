@@ -10,7 +10,7 @@ import { AppstateModel } from '../../shared/Global/appstate.model';
   templateUrl: './counterdisplay.component.html',
   styleUrl: './counterdisplay.component.css'
 })
-export class CounterdisplayComponent implements OnInit,OnDestroy {
+export class CounterdisplayComponent implements OnInit, OnDestroy {
 
   constructor(private store:Store<AppstateModel>) { }
 

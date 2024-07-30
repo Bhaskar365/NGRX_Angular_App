@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BlogModel } from '../shared/store/Blog/Blog.model';
-import { getblog } from '../shared/store/Blog/Blog.selectors';
+import { BlogModel, Blogs } from '../shared/store/Blog/Blog.model';
+import { getblog, getbloginfo } from '../shared/store/Blog/Blog.selectors';
 import { AppstateModel } from '../shared/Global/appstate.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddblogComponent } from '../component/addblog/addblog.component';
@@ -16,14 +16,16 @@ import { deleteblog, loadblog } from '../shared/store/Blog/Blog.actions';
 export class BlogComponentComponent implements OnInit {
 
   blogList!:BlogModel[];
+  blogInfo!:Blogs;
 
   constructor(private store:Store<AppstateModel>, private dialog:MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadblog())
-    this.store.select(getblog).subscribe(item => {
-      this.blogList = item;
-      console.log(this.blogList);
+    this.store.select(getbloginfo).subscribe(item => {
+      //this.blogList = item;
+      this.blogInfo = item;
+      console.log(this.blogInfo);
     });
   }
 
