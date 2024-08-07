@@ -25,7 +25,6 @@ export class BlogComponentComponent implements OnInit {
     this.store.select(getbloginfo).subscribe(item => {
       //this.blogList = item;
       this.blogInfo = item;
-      console.log(this.blogInfo);
     });
   }
 
