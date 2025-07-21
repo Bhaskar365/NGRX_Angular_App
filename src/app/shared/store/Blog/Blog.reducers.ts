@@ -1,27 +1,30 @@
 import { createReducer, on } from '@ngrx/store';
-import { addblog, addblogsuccess, deleteblog, loadblog, loadblogfail, loadblogsuccess, updateblog } from "./Blog.actions";
+import { addblog, addblogsuccess, deleteblog, loadblog, loadblogfail, loadblogsuccess, loadspinner, updateblog, updateblogsuccess } from "./Blog.actions";
 import { BlogState } from "./Blog.state";
 import { BlogModel } from './Blog.model';
 
 const _blogReducer = createReducer(BlogState, 
     on(loadblog, (state) => {
         return {
-            ...state
+            ...state,
+             IsLoaded:false
         };
     }),
     on(loadblogsuccess, (state,action)=> {
         return {
             ...state,
             bloglist:[...action.bloglist],
-            ErrorMessage: ''
+            ErrorMessage: '',
+            IsLoaded:false
         }
     }),
-    on(loadblogfail,(state,action)=>{
+    on(loadblogfail,(state,action)=> {
         console.log(action.Errortext)
         return {
             ...state,
             bloglist:[],
-            ErrorMessage:action.Errortext.message
+            ErrorMessage:action.Errortext.message,
+            IsLoaded:false
         }
     }),
     // on(addblog, (state,action)=> {
@@ -36,17 +39,19 @@ const _blogReducer = createReducer(BlogState,
         const _blog = {...action.bloginput};
         return {
             ...state,
-            bloglist:[...state.bloglist,_blog]
+            bloglist:[...state.bloglist,_blog],
+            IsLoaded:false
         }
     }),
-    on(updateblog,(state,action)=> {
+    on(updateblogsuccess,(state,action)=> {
         const _blog = {...action.bloginput};
         const updatedblog = state.bloglist.map(blog => {
             return _blog.id === blog.id ? _blog : blog;
         })
         return {
             ...state,
-            bloglist : updatedblog
+            bloglist : updatedblog,
+            IsLoaded:false
         }
     }),
     on(deleteblog,(state,action)=> {
@@ -55,7 +60,14 @@ const _blogReducer = createReducer(BlogState,
         });
         return {
             ...state,
-            bloglist: updatedblogToDelete   
+            bloglist: updatedblogToDelete,
+            IsLoaded:false 
+        }
+    }),
+    on(loadspinner,(state,action)=>{
+        return {
+            ...state,
+            IsLoaded:action.isLoaded
         }
     })
 )
@@ -63,3 +75,4 @@ const _blogReducer = createReducer(BlogState,
 export function blogReducer(state:any, action:any) {
     return _blogReducer(state,action);
 }
+

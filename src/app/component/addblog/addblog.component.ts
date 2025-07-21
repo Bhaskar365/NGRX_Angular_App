@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BlogModel } from '../../shared/store/Blog/Blog.model';
 import { Store } from '@ngrx/store';
 import { AppstateModel } from '../../shared/Global/appstate.model';
-import { addblog, updateblog } from '../../shared/store/Blog/Blog.actions';
+import { addblog, loadspinner, updateblog } from '../../shared/store/Blog/Blog.actions';
 import { getBlogById } from '../../shared/store/Blog/Blog.selectors';
 
 @Component({
@@ -24,7 +24,7 @@ export class AddblogComponent implements OnInit {
                @Inject(MAT_DIALOG_DATA) public data:any) {}
 
   ngOnInit(): void {
-
+  
     this.pageTitle = this.data.title;
     if(this.data.isEdit) {
       this.editBlogId = this.data.id;

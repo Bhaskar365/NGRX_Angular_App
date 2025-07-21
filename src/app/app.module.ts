@@ -20,6 +20,8 @@ import { AddblogComponent } from './component/addblog/addblog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { BlogEffects } from './shared/store/Blog/Blog.Effects';
+import { AppEffects } from './shared/Global/App.Effects';
+import { LoadingspinnerComponent } from './component/loadingspinner/loadingspinner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { BlogEffects } from './shared/store/Blog/Blog.Effects';
     CounterdisplayComponent,
     CustomcounterComponent,
     BlogComponentComponent,
-    AddblogComponent
+    AddblogComponent,
+    LoadingspinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { BlogEffects } from './shared/store/Blog/Blog.Effects';
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EffectsModule.forRoot([BlogEffects])
+    EffectsModule.forRoot([BlogEffects, AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

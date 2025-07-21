@@ -5,7 +5,7 @@ import { getblog, getbloginfo } from '../shared/store/Blog/Blog.selectors';
 import { AppstateModel } from '../shared/Global/appstate.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddblogComponent } from '../component/addblog/addblog.component';
-import { deleteblog, loadblog } from '../shared/store/Blog/Blog.actions';
+import { deleteblog, loadblog, loadspinner } from '../shared/store/Blog/Blog.actions';
 
 @Component({
   selector: 'app-blog-component',
@@ -15,41 +15,47 @@ import { deleteblog, loadblog } from '../shared/store/Blog/Blog.actions';
 })
 export class BlogComponentComponent implements OnInit {
 
-  blogList!:BlogModel[];
-  blogInfo!:Blogs;
+  blogList!: BlogModel[];
+  blogInfo!: Blogs;
 
-  constructor(private store:Store<AppstateModel>, private dialog:MatDialog) {}
+  constructor(private store: Store<AppstateModel>, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadblog())
-    this.store.select(getbloginfo).subscribe(item => {
-      //this.blogList = item;
-      this.blogInfo = item;
-    });
+
+    this.store.dispatch(loadspinner({ isLoaded: true }));
+    setTimeout(() => {
+      this.store.dispatch(loadblog())
+      this.store.select(getbloginfo).subscribe(item => {
+        //this.blogList = item;
+        this.blogInfo = item;
+      });
+    }, 4000);
+
+
   }
 
   AddBlog() {
-    this.OpenPopup(0,'Add blog');
+    this.OpenPopup(0, 'Add blog');
   }
 
-  OpenPopup(id:any, title:any, isEdit=false) {
-    this.dialog.open(AddblogComponent,{
-      width:'40%',
-      data : {
-        id:id,
-        title:title,
-        isEdit:isEdit
+  OpenPopup(id: any, title: any, isEdit = false) {
+    this.dialog.open(AddblogComponent, {
+      width: '40%',
+      data: {
+        id: id,
+        title: title,
+        isEdit: isEdit
       }
     });
   }
 
-  EditBlog(id:any) {
+  EditBlog(id: any) {
     this.OpenPopup(id, 'Edit Blog', true);
   }
 
-  RemoveBlog(id:any) {
-    if(confirm('Are you sure to remove this blog?')) {
-      this.store.dispatch(deleteblog({id:id}));
+  RemoveBlog(id: any) {
+    if (confirm('Are you sure to remove this blog?')) {
+      this.store.dispatch(deleteblog({ id: id }));
     }
   }
 }

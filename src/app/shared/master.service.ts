@@ -27,11 +27,11 @@ export class MasterService {
   }
 
   UpdateBlog(bloginput:BlogModel) {
-    return this.http.put("http://localhost:3000/Blogs/"+bloginput.id,bloginput);
+    return this.http.put("http://localhost:3000/Blogs/" + bloginput.id, bloginput);
   }
 
   DeleteBlog(blogId:number) {
-    return this.http.delete("http://localhost:3000/Blogs/"+blogId);
+    return this.http.delete("http://localhost:3000/Blogs/" + blogId);
   }
 
 }

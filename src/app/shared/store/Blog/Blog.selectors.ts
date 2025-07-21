@@ -15,3 +15,8 @@ export const getBlogById = (blogId:number) => createSelector(getblogstate, (stat
 export const getbloginfo = createSelector(getblogstate, (state)=>{
     return state;
 });
+
+export const getspinnerstate = createSelector(getblogstate, (state)=>{
+    return state.IsLoaded;
+});
+
