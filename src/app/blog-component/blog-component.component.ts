@@ -5,7 +5,8 @@ import { getblog, getbloginfo } from '../shared/store/Blog/Blog.selectors';
 import { AppstateModel } from '../shared/Global/appstate.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddblogComponent } from '../component/addblog/addblog.component';
-import { deleteblog, loadblog, loadspinner } from '../shared/store/Blog/Blog.actions';
+import { deleteblog, loadblog } from '../shared/store/Blog/Blog.actions';
+import { loadspinner } from '../shared/Global/App.Action';
 
 @Component({
   selector: 'app-blog-component',
@@ -22,15 +23,16 @@ export class BlogComponentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.dispatch(loadspinner({ isLoaded: true }));
+    this.store.dispatch(loadspinner({ isloaded: true }));
     setTimeout(() => {
-      this.store.dispatch(loadblog())
-      this.store.select(getbloginfo).subscribe(item => {
-        //this.blogList = item;
-        this.blogInfo = item;
-      });
-    }, 4000);
-
+      this.store.dispatch(loadblog());
+       this.store.dispatch(loadspinner({ isloaded: false }));
+    }, 1000);
+    this.store.select(getbloginfo).subscribe(item => {
+    //this.blogList = item;
+      this.blogInfo = item;
+    });
+    
 
   }
 
@@ -55,7 +57,10 @@ export class BlogComponentComponent implements OnInit {
 
   RemoveBlog(id: any) {
     if (confirm('Are you sure to remove this blog?')) {
+      this.store.dispatch(loadspinner({ isloaded: true }));
+      setTimeout(() => {
       this.store.dispatch(deleteblog({ id: id }));
+    }, 1000);
     }
   }
 }

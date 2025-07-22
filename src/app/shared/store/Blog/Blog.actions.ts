@@ -10,7 +10,7 @@ export const UPDATE_BLOG = '[blog page] update blog';
 export const UPDATE_BLOG_SUCCESS = '[blog page] update blog success';
 export const DELETE_BLOG = '[blog page] delete blog';
 export const DELETE_BLOG_SUCCESS = '[blog page] delete blog success';
-export const LOAD_SPINNER = '[blog page] delete blog success';
+// export const LOAD_SPINNER = '[blog page] delete blog success';
 
 export const loadblog = createAction(LOAD_BLOG);
 
@@ -30,4 +30,3 @@ export const deleteblog = createAction(DELETE_BLOG, props<{id:number}>());
 
 export const deleteblogsuccess = createAction(DELETE_BLOG_SUCCESS,props<{id:number}>());
 
-export const loadspinner = createAction(LOAD_SPINNER,props<{isLoaded:boolean}>());

@@ -7,6 +7,6 @@ export interface BlogModel {
 
 export interface Blogs {
     bloglist: BlogModel[],
-    ErrorMessage:string,
-    IsLoaded:boolean
+    ErrorMessage:string
+    //IsLoaded:boolean
 }

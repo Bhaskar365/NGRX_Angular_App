@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getspinnerstate } from '../../shared/store/Blog/Blog.selectors';
+import { getspinnerstate } from '../../shared/Global/App.Selectors';
 
 @Component({
   selector: 'app-loadingspinner',
@@ -9,14 +9,15 @@ import { getspinnerstate } from '../../shared/store/Blog/Blog.selectors';
 })
 export class LoadingspinnerComponent implements OnInit {
 
-  isLoaded = false;
+  isloaded = false;
 
   constructor(private store:Store) { }
  
   ngOnInit(): void {
     this.store.select(getspinnerstate).subscribe(res => {
-      this.isLoaded = res;
+      this.isloaded = res;
     })
   }
 
+  
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addblog, addblogsuccess, deleteblog, loadblog, loadblogfail, loadblogsuccess, loadspinner, updateblog, updateblogsuccess } from "./Blog.actions";
+import { addblog, addblogsuccess, deleteblog, loadblog, loadblogfail, loadblogsuccess, updateblog, updateblogsuccess } from "./Blog.actions";
 import { BlogState } from "./Blog.state";
 import { BlogModel } from './Blog.model';
 
@@ -15,7 +15,7 @@ const _blogReducer = createReducer(BlogState,
             ...state,
             bloglist:[...action.bloglist],
             ErrorMessage: '',
-            IsLoaded:false
+            //IsLoaded:false
         }
     }),
     on(loadblogfail,(state,action)=> {
@@ -24,7 +24,7 @@ const _blogReducer = createReducer(BlogState,
             ...state,
             bloglist:[],
             ErrorMessage:action.Errortext.message,
-            IsLoaded:false
+            // IsLoaded:false
         }
     }),
     // on(addblog, (state,action)=> {
@@ -40,7 +40,7 @@ const _blogReducer = createReducer(BlogState,
         return {
             ...state,
             bloglist:[...state.bloglist,_blog],
-            IsLoaded:false
+            // IsLoaded:false
         }
     }),
     on(updateblogsuccess,(state,action)=> {
@@ -51,7 +51,7 @@ const _blogReducer = createReducer(BlogState,
         return {
             ...state,
             bloglist : updatedblog,
-            IsLoaded:false
+            // IsLoaded:false
         }
     }),
     on(deleteblog,(state,action)=> {
@@ -61,13 +61,7 @@ const _blogReducer = createReducer(BlogState,
         return {
             ...state,
             bloglist: updatedblogToDelete,
-            IsLoaded:false 
-        }
-    }),
-    on(loadspinner,(state,action)=>{
-        return {
-            ...state,
-            IsLoaded:action.isLoaded
+            // IsLoaded:false 
         }
     })
 )

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MasterService } from '../../master.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { addblog, addblogsuccess, deleteblog, deleteblogsuccess, LOAD_BLOG, loadblogfail, loadblogsuccess, loadspinner, updateblog, updateblogsuccess } from './Blog.actions';
+import { addblog, addblogsuccess, deleteblog, deleteblogsuccess, LOAD_BLOG, loadblogfail, loadblogsuccess, updateblog, updateblogsuccess } from './Blog.actions';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { BlogModel } from './Blog.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EmptyAction, ShowAlert } from '../../Global/App.Action';
+import { EmptyAction, loadspinner, ShowAlert } from '../../Global/App.Action';
 
 @Injectable()
 
@@ -23,7 +23,7 @@ export class BlogEffects {
                     map((data) => {
                         return loadblogsuccess({ bloglist: data });
                     }),
-                    catchError((_error) => of(loadblogfail({ Errortext: _error }),loadspinner({isLoaded:false})))
+                    catchError((_error) => of(loadblogfail({ Errortext: _error }),loadspinner({isloaded:false})))
                 )
             })
         )
@@ -36,9 +36,10 @@ export class BlogEffects {
                 this.service.CreateBlog(action.bloginput).pipe(
                     switchMap(data => of(
                         addblogsuccess({ bloginput: data as BlogModel }),
+                        loadspinner({isloaded:false}),
                         ShowAlert({ message: 'Created Successfully.', actionresult: 'pass' })
                     )),
-                    catchError((_error) => of(ShowAlert({ message: 'Create Fail.', actionresult: 'fail' }),loadspinner({isLoaded:false})))
+                    catchError((_error) => of(ShowAlert({ message: 'Create Fail.', actionresult: 'fail' }),loadspinner({isloaded:false})))
                 )
             )
         )
@@ -51,9 +52,10 @@ export class BlogEffects {
                 this.service.UpdateBlog(action.bloginput).pipe(
                     switchMap(res => of(
                         updateblogsuccess({ bloginput: action.bloginput }),
+                        loadspinner({isloaded:false}),
                         ShowAlert({ message: 'Updated Successfully.', actionresult: 'pass' })
                     )),
-                    catchError((_error) => of(ShowAlert({ message: 'Update Failed - Due to ' + _error.message, actionresult: 'fail' }),loadspinner({isLoaded:false})))
+                    catchError((_error) => of(ShowAlert({ message: 'Update Failed - Due to ' + _error.message, actionresult: 'fail' }),loadspinner({isloaded:false})))
                 )
             )
         )
@@ -66,9 +68,10 @@ export class BlogEffects {
                 this.service.DeleteBlog(action.id).pipe(
                     switchMap(res => of(
                         deleteblogsuccess({id:action.id}),
+                        loadspinner({isloaded:false}),
                         ShowAlert({message: 'Removed successfully', actionresult:'pass'})
                     )),
-                    catchError((_error)=>of(ShowAlert({message:'Remove Fail',actionresult:'fail'}),loadspinner({isLoaded:false})))
+                    catchError((_error)=>of(ShowAlert({message:'Remove Fail',actionresult:'fail'}),loadspinner({isloaded:false})))
                 )
             )
         )
